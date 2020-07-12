@@ -51,7 +51,8 @@ public:
   void print_cards() const;
   friend std::ostream& operator<< (std::ostream & out, const Cards & cards);
   friend std::ostream & operator<< (std::ostream & out, const card_ & card); //must be a friend to access card_, card_face_ etc.
-  
+
+  card_ top_card() const;
   void shuffle_deck(shuffle_strategy strategy, int seed);
   void empty_deck();
   card_ & pop_deck();

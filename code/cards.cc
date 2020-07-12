@@ -16,7 +16,8 @@ void Cards::print_cards() const {
     else if(deck_[i].suit == card_suit_::diamonds) suit = "diamond";
     else if(deck_[i].suit == card_suit_::spades)   suit = "spades";
       
-    std::cout << suit << "\t" << static_cast<int>(deck_[i].face) << std::endl;
+    std::cout << suit << "\t" << static_cast<int>(deck_[i].face) << std
+::endl;
   }
   return;
 }
@@ -123,4 +124,12 @@ Cards::card_ & Cards::pop_deck(){
   --deck_size_;
   return top_card;
 
+}
+
+Cards::card_ Cards::top_card() const{
+  /// Returns the top card in the deck
+  /// (not by reference, I think)
+  assert(deck_size_ > 0 && "deck is empty!");
+  card_  top_card = deck_[deck_size_ - 1];
+  return top_card;
 }

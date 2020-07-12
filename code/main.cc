@@ -5,6 +5,7 @@
 
 
 void test_cards_hh(){
+  /// Tests cards.hh and cards.cc functionality
     /*
     RM: Things that have been tested:
         ~cards.cc
@@ -46,13 +47,39 @@ void test_cards_hh(){
 }
 
 void test_player_hh(){
+  /// Tests player.hh and player.cc functionality
 
-  Player player1 {2020};
+  bool player1_starts_with_empty_deck = false;
+  Player player1 {player1_starts_with_empty_deck, 2020};
+  
+  // Test printing -- Works
+  std::cout << player1 << std::endl;
+
+  // test transferring deck -- Works
+  /*
+  player1.empty_playing_deck();
+  std::cout << player1 << std::endl;
+  player1.transfer_win_to_play();
+  std::cout << player1 << std::endl;
+  */
+
+  Player player2 {false, 2019};
+
+  player1.top_card();
+  player2.top_card();
+  // testing the >, < and == operators: -- Works
+  std::cout << "> " << (player1 >  player2) << std::endl
+	    << "< " << (player1 <  player2) << std::endl
+  	    << "== "<< (player1 == player2) << std::endl;
 }
 
 int main(int argc, char* argv[]){
   // test_cards_hh();
   test_player_hh();
+
+  Cards deck {2020};
+
+
 
   // --------------------- end ---------------------
   return 0;

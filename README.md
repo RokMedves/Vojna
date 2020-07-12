@@ -3,6 +3,25 @@ Simulation of card game War in C++
 
 ## Structure of Code
 
+### General structure
+1. main.cc creates a CardGameWar() object.
+2. CardGameWar() creates two Player() objects by composition.
+   The class also creates two card objects. One gets emptied out
+   and the other gets shuffled --> Half the deck gets popped to
+   the other empty half. This gets passed to the two Player()
+   objects via their constructor.
+3. Players have two decks - a play deck, where they play cards from
+   and a win_deck, which gets the winnings
+4. CardGameWar::play() gets called from main.cc
+   - checks if game is over
+   - calls find_winner() until a winner is found 
+     - This compares the two players and determined a winner
+       (via overloaded >, < or ==). When the result is known
+       an appropriate amount of cards get popped and pushed from
+       one player to another.
+   - once winner found, give him the cards.
+   - repeat until game over 
+
 ### main.cc
 - Runs the code
 - as of 12/07/2020 also has test functions to test separate pieces of code
@@ -19,8 +38,17 @@ Simulation of card game War in C++
   4. pop_deck(): removed a card at the top of the deck and returns it as a reference
   5. push_deck(): accepts a card and puts it on top of the deck
   6. deck_size()
+  7. top_card(): gets the top card of the deck (not a reference to it!)
 
 ### player.hh, player.cc
+- Defined functions:
+  1. operator<<(): prints the playing and winning decks
+  2. operator>(), operator<(), operator==():
+     compares the top card of the play_decks of two players
+  3. transfer_win_to_play(): transfers the win deck to the play deck
+     (to be used when the play deck is empty)
+  4. top_card(): prints the top card of the players play_deck
+  5. empty_playing_deck(): [FOR TESTING] empties the play_deck
 # Issues
 
 ## cards.hh, cards.cc
