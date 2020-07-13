@@ -1,5 +1,5 @@
 #include<iostream>
-// #include "cardGameWar.hh"
+#include "cardGameWar.hh"
 #include "cards.hh"
 #include "player.hh"
 
@@ -73,12 +73,29 @@ void test_player_hh(){
   	    << "== "<< (player1 == player2) << std::endl;
 }
 
+void test_card_game_war_hh(){
+  /// Tests player.hh and player.cc functionality
+  CardGameWar game {2020};
+
+  // Testing printing methods
+  // split_deck() validated through constructor
+  // constructor validated
+  std::cout << game << std::endl;
+
+  // testing other functionality
+  // allocate_winnings() NOT WORKING!!!
+  game.play_war();
+  std::cout << game << std::endl;
+
+  
+  return;
+}
+
 int main(int argc, char* argv[]){
   // test_cards_hh();
-  test_player_hh();
+  // test_player_hh();
 
-  Cards deck {2020};
-
+  test_card_game_war_hh();
 
 
   // --------------------- end ---------------------

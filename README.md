@@ -49,16 +49,45 @@ Simulation of card game War in C++
      (to be used when the play deck is empty)
   4. top_card(): prints the top card of the players play_deck
   5. empty_playing_deck(): [FOR TESTING] empties the play_deck
-# Issues
 
-## cards.hh, cards.cc
+### cardGameWar.hh, cardGameWar.cc
+- Outlines the rules of the game. Plays the game via playWar()
+- Since Players would not be used anywhere outside of the game,
+  they are introduced via composition (uses-a relationship) rather
+  than being passed as a reference.
+  This could change if the user wanted to customize the player i.e.
+  by adding names etc. _For now will all be managed from inside CardGameWar_
+
+## To Do
+
+### cards.hh, cards.cc
+- implement dumb_shuffle shuffling strategy
+
+### player.hh, player.cc
+
+- when testing for >, <, == between players, these operators should handle
+  the win_deck and play_deck interactions.
+  If both become empty, an internal bool has_lost in Player should be
+  triggered and tested for in CardGameWar.
+
+## Issues
+
+### cards.hh, cards.cc
 
 - It is important to think about how the game class will create and distribute cards between players. While it is easy to create a whole deck in the constructor, one should also have a method that splits the deck in two, three, etc. equal parts. Then a copy constructor would need to be used for the players hands. 
 - a function would be enough which gets a deck, does a size check, and returns an array of card objects. These are used to init the hands. 
 
-## player.hh, player.cc
+### player.hh, player.cc
 - There might be an issue with how we check in cardGameWar, which player has the stronger card....
   I got it - the > operator!!
 - Still might need to figure our the logic, because saying that player1 is beter than player2
   in real life is a bit of a stretch... It is the current hands which are better/worse in reality... Can this be implemented?
 
+# Things learnt
+
+- If you have an enum defined in the private section of a class,
+  then friend functions can make use of them; You _do not_ need
+  to use an object!
+  Example: friends std::ostream & operator<< () in CardGameWar will
+  	   be able to use the Winner type, though it is private and
+	   the function does not accept an object! Super nice

@@ -18,13 +18,19 @@ class Cards{
 private:
   struct card_; // forward declaration of the struct
                 // so that other methods can even define it. 
+
+  
+public:
+
+  // shuffle strategies made open to be used in player.hh
+  // THE ONLY REASON WHY THIS IS PUBLIC IS BECAUSE
+  // I WANTED IT PRIVATE BUT PLAYER.HH COULD NOT MAKE USE OF IT
   enum class shuffle_strategy { //use this later!
     no_shuffle,
     quick_shuffle,
     dumb_shuffle,
   };
   
-public:
   Cards(int seed = 0){
     /// returns a whole stack of cards if not initializing with an object
     /// use for loop to iterate through the enums and fill in the cards, then shuffle them
@@ -52,6 +58,7 @@ public:
   friend std::ostream& operator<< (std::ostream & out, const Cards & cards);
   friend std::ostream & operator<< (std::ostream & out, const card_ & card); //must be a friend to access card_, card_face_ etc.
 
+  // card and deck manipulation methods
   card_ top_card() const;
   void shuffle_deck(shuffle_strategy strategy, int seed);
   void empty_deck();

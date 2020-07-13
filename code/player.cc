@@ -5,8 +5,10 @@
 
 std::ostream & operator<<(std::ostream & out, const Player & player) {
   /// Prints the current playing and winning decks of a player
-  out << "Current playing deck: " << player.play_deck
-      << std::endl << "Current winnings deck: " << player.win_deck
+  out << "Current playing deck: " << std::endl
+      << player.play_deck
+      << std::endl << "Current winnings deck: " << std::endl
+      << player.win_deck
       << std::endl;
   
   return out;
@@ -38,10 +40,38 @@ bool Player::operator== (const Player & player2) const{
 
 // Other methods
 
+bool Player::add_winnings(Player & player){
+  /// Removes the top card from the player's play_deck
+  /// and adds it to *this's win_deck
+  ///
+  /// The return type indicates whether the winnings
+  /// were transferred correctly:
+  ///   -> true:  transfer made
+  ///   -> false: player ran out of cards
+
+  // Test if the player's hand is empty and furthermore
+  // if he has no cards in general. Returns false if so
+  if(player.deck_size() == 0){
+    player.transfer_win_to_play();
+    if(player.deck_size() == 0) return false;
+  }
+
+  // push the card onto the deck
+  this->win_deck.push_deck(player.play_deck.pop_deck()); 
+  
+  return true;
+}
+
+
 void Player::top_card() const{
   /// prints the top card of the players playing deck
   std::cout << play_deck.top_card() <<  std::endl;
   return;
+}
+
+unsigned int Player::deck_size() const{
+  /// Returns the play_deck's size
+  return play_deck.deck_size(); 
 }
 
 void Player::transfer_win_to_play(){
