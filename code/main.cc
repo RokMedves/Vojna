@@ -75,7 +75,7 @@ void test_player_hh(){
 
 void test_card_game_war_hh(){
   /// Tests player.hh and player.cc functionality
-  CardGameWar game {2020};
+  CardGameWar game {5021996};
 
   // Testing printing methods
   // split_deck() validated through constructor
@@ -83,7 +83,11 @@ void test_card_game_war_hh(){
   std::cout << game << std::endl;
 
   // testing other functionality
-  // allocate_winnings() NOT WORKING!!!
+  // allocate_winnings() -- Works
+  // find_winner() -- Works
+  //
+  // still need to implement checking if deck is full/empty
+  // and if the game is over! 
   game.play_war();
   std::cout << game << std::endl;
 

@@ -40,7 +40,7 @@ public:
   
   
 private:
-  //For now just look at getting the game working for 2 players
+  // For now just look at getting the game working for 2 players
   // RM Query old: Can these player references become const?
   //               See learn c++ section on agregation for answer...
 
@@ -55,9 +55,10 @@ private:
   // Game state variables
   bool game_over_ = false;
   
-  // Methods called from playWar()
+  // Methods called from play_war()
   bool find_winner();
   void allocate_winnings();
+  void play_top_cards();
   
   // When players get initialized their hands get split in 2
   void split_deck();

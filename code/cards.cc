@@ -129,7 +129,9 @@ Cards::card_ & Cards::pop_deck(){
 Cards::card_ Cards::top_card() const{
   /// Returns the top card in the deck
   /// (not by reference, I think)
+  
   assert(deck_size_ > 0 && "deck is empty!");
+
   card_  top_card = deck_[deck_size_ - 1];
   return top_card;
 }

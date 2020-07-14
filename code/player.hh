@@ -28,9 +28,9 @@ public:
   friend std::ostream & operator<< (std::ostream & out, const Player & player);
 
   // methods for comparing who has the better cards in cardGameWar.hh/.cc
-  bool operator>  (const Player & player2) const;
-  bool operator<  (const Player & player2) const;
-  bool operator== (const Player & player2) const;
+  bool operator>  (Player & player2);
+  bool operator<  (Player & player2);
+  bool operator== (Player & player2);
 
   // other methods
 

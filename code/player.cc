@@ -16,23 +16,57 @@ std::ostream & operator<<(std::ostream & out, const Player & player) {
 
 // overloading >, < and == for determining the winners
 
-bool Player::operator> (const Player & player2) const{
+bool Player::operator> (Player & player2){
   /// Test if the top card of one players deck has a
   /// value grater than the top card of the other player
+
+  // check if decks need switching
+  if (deck_size() == 0){
+    transfer_win_to_play();
+    // if deck still empty, the player lost
+    if(deck_size() == 0) return false;
+  }
+  if (player2.deck_size() == 0){
+    player2.transfer_win_to_play();
+    // if deck still empty, the player lost
+    if(deck_size() == 0) return true;
+  }
   return (play_deck.top_card().face >
 	  player2.play_deck.top_card().face);
 }
 
-bool Player::operator< (const Player & player2) const{
+bool Player::operator< (Player & player2){
   /// Test if the top card of one players deck has a
   /// value smaller than the top card of the other player
+
+  if (this->deck_size() == 0){
+    this->transfer_win_to_play();
+    // if deck still empty, the player lost
+    if(deck_size() == 0) return true;
+  }
+  if (player2.deck_size() == 0){
+    player2.transfer_win_to_play();
+    // if deck still empty, the player lost
+    if(deck_size() == 0) return false;
+  }
   return (play_deck.top_card().face <
 	  player2.play_deck.top_card().face);
 }
 
-bool Player::operator== (const Player & player2) const{
+bool Player::operator== (Player & player2){
   /// Test if the top card of one players deck has a
   /// value equal than the top card of the other player
+
+  if (this->deck_size() == 0){
+    this->transfer_win_to_play();
+    // if deck still empty, the player lost
+    if(deck_size() == 0) return false;
+  }
+  if (player2.deck_size() == 0){
+    player2.transfer_win_to_play();
+    // if deck still empty, the player lost
+    if(deck_size() == 0) return false;
+  }
   return (play_deck.top_card().face ==
 	  player2.play_deck.top_card().face);
 }
